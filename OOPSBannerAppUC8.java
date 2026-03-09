@@ -1,63 +1,70 @@
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class OOPSBannerAppUC8 {
 
-    // Method to create character pattern map
-    public static Map<Character, String[]> createPatternMap() {
+    // Method to create character patterns
+    public static Map<Character, String[]> createCharacterPatterns() {
 
-        Map<Character, String[]> map = new HashMap<>();
+        Map<Character, String[]> patternMap = new HashMap<>();
 
-        map.put('O', new String[]{
-                " *** ",
-                "*   *",
-                "*   *",
-                "*   *",
-                " *** "
+        patternMap.put('O', new String[]{
+                " ***** ",
+                "*     *",
+                "*     *",
+                "*     *",
+                " ***** "
         });
 
-        map.put('P', new String[]{
-                "**** ",
-                "*   *",
-                "**** ",
-                "*    ",
-                "*    "
+        patternMap.put('P', new String[]{
+                " ***** ",
+                "*     *",
+                " ***** ",
+                "*      ",
+                "*      "
         });
 
-        map.put('S', new String[]{
-                " ****",
-                "*    ",
-                " *** ",
-                "    *",
-                "**** "
+        patternMap.put('S', new String[]{
+                " ***** ",
+                "*      ",
+                " ***** ",
+                "      *",
+                " ***** "
         });
 
-        return map;
+        return patternMap;
     }
 
-    // Method to print banner
-    public static void printBanner(String word, Map<Character, String[]> map) {
+    // Method to display banner
+    public static void displayBanner(String message, Map<Character, String[]> patternMap) {
 
-        int rows = 5;
+        int height = 5;
 
-        for (int i = 0; i < rows; i++) {
+        for (int i = 0; i < height; i++) {
 
-            StringBuilder line = new StringBuilder();
+            StringBuilder row = new StringBuilder();
 
-            for (char c : word.toCharArray()) {
+            for (char ch : message.toCharArray()) {
 
-                line.append(map.get(c)[i]).append(" ");
+                String[] pattern = patternMap.get(ch);
+
+                if (pattern != null) {
+                    row.append(pattern[i]).append("  ");
+                }
             }
 
-            System.out.println(line);
+            System.out.println(row);
         }
     }
 
-    // Main method
     public static void main(String[] args) {
 
-        Map<Character, String[]> patternMap = createPatternMap();
+        Map<Character, String[]> patternMap = createCharacterPatterns();
 
-        printBanner("OOPS", patternMap);
+        String message = "OOPS";
+
+        displayBanner(message, patternMap);
+
+        System.out.println("Program Exited Successfully");
     }
 }
